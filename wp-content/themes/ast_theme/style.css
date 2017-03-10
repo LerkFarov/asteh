@@ -1,0 +1,669 @@
+/*
+Theme Name: AST Theme
+Theme URI: http://ast.team-kaktus.tk/
+Author: team-kaktus.tk
+Author URI: http://team-kaktus.tk/
+Description: Тема создана для "Аренда строительной техники"
+Version: 1.0
+*/
+
+@font-face {
+    font-family: 'Bebas Neue Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Bebas Neue Regular'), url('./fonts/BebasNeue Regular.woff') format('woff');
+}
+
+html{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: block;
+    width: 791px !important;
+    margin: 0 auto !important;
+    padding: 0px !important;
+    overflow-y:scroll !important;
+}
+a:focus, a:hover {
+    text-decoration: none !important;
+}
+.header_fon{
+    background-image: url('./images/header_fon.png');
+    box-sizing: border-box;
+    height: 66px;
+    border-top: 1px solid transparent;
+}
+.call_back_button{
+    background-color: #ffd200 !important;
+    border: 0px solid transparent !important;
+    color: #4d4d4d;
+    font-size: 12px;
+    font-weight: 500;
+}
+.map-marker{
+    width: 200px;
+    float: left;
+    margin: 21px 0 0 21px;
+    font-family: "Exo 2";
+    font-weight: 500;
+}
+.map-marker:before{
+    display: block;
+    content: url("./images/marker_head.png");
+    float: left;
+    margin-right: 5px;
+}
+.email-block{
+    width: 150px;
+    float: left;
+    margin: 20px 0 0 10px;
+    font-family: "Exo 2";
+    font-weight: 500;
+}
+.email-block:after{
+    display: block;
+    content: url("./images/mail_header.png");
+    float: left;
+    margin-right: 5px;
+}
+.phone-block{
+    width: 175px;
+    float: right;
+    font-family: "Bebas Neue Regular";
+    font-size: 27px !important;
+    margin: 13px 0 0 5px;
+}
+.text-color_grey{
+    color:#b3b3b3;
+    font-size: 13px;
+}
+.call_back{
+    margin: 16px 21px 0 0;
+    float: right;
+}
+.text-color_yellow{
+    color: #ffd200 !important;
+}
+.ast_logo_block{
+    width:150px;
+    position:relative;
+    margin:0 auto;
+    z-index:9;
+    transform: translate(20px, -40px);
+    -moz-transform: translate(20px, -40px);
+    -webkit-transform: translate(20px, -40px);
+    -o-transform: translate(20px, -40px);
+    -ms-transform:translate(20px, -40px);
+}
+
+.grey_fon{
+    background-image: url('./images/grey_fon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top:-70px;
+    height:290px;
+    font-family: "Exo 2";
+}
+.slogan_text{
+    width: 360px;
+    height: 160px;
+    float: left;
+}
+.orenda{
+    color:white;
+    font-size:60px;
+    font-weight: bold;
+    display: inline-block;
+    font-family: "Bebas Neue Regular";
+    background-color:#ffd200;
+    margin: 20px 0 0 37px;
+    padding:0px 10px 0px 10px;
+}
+.orenda2{
+    color:black;
+    font-size:35px;
+    font-weight: bold;
+    margin: 10px 0 0 37px;
+    font-family: "Bebas Neue Regular";
+}
+.orenda3{
+    color:white;
+    font-size:25px;
+    margin: 10px 0 0 37px;
+    font-family: "Bebas Neue Regular";
+}
+.work-text-container{
+    width: 374px;
+    height: 235px;
+    float: right;
+    position: relative;
+}
+.work-text-container > img{
+     display: block;
+     float: left;
+     margin: 37px 0 0 0;
+ }
+.work-text-container span{
+    display: block;
+    font-family: "Exo 2";
+    font-size: 12px;
+    font-weight: 500;
+    float: right;
+    width: 137px;
+    margin: 15px 21px 0 0;
+    text-align: right;
+    color: white;
+}
+.productTable tr td:last-child{
+    text-align: center;
+}
+.categ_name1{
+    font-family: "Exo 2";
+    font-size: 13px;
+    color: #808080;
+    text-align: center;
+}
+.instructions-btn{
+    color: white !important;
+    font-size: 13px !important;
+    font-family: 'Exo 2';
+    width: 100%;
+    background-color: #ffd200 !important;
+    white-space: normal !important;
+    border: 0 !important;
+}
+.footer {
+    background-image: url('./images/footer_fon.png');
+    background-repeat: no-repeat;
+	background-size: cover;
+    height: 168px;
+    padding-top: 67px;
+}
+.textContent ul{
+    padding: 0;
+}
+.textContent ul li{
+    list-style-type: none;
+    font-size: 12px;
+    color: #808080;
+    line-height: 25px;
+    padding-left: 15px;
+    position: relative;
+}
+.textContent ul li:before{
+    position: absolute;
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    content: '';
+    background: #ffd200;
+    left: 0;
+    top: 8px
+}
+.oput li{
+    float:left;
+}
+.oput li:before{
+    display: block;
+    content:'';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color:#ffd200;
+    float:left;
+    margin: 12px 10px 0 10px;
+}
+.oput li:first-child:before{
+    display: none;
+}
+
+.footer_logo{
+    background-image: url('./images/footer_logo.png');
+    width:100px;
+}
+.footer_icon_text{
+    font-family: "Exo 2";
+    font-size:10px;
+    padding:0px;
+    text-align:center;
+    color:#cccccc;
+}
+
+nav {
+    width: 100%;
+    //background: #f0f0f0;
+    //border: 1px solid #ccc;
+    border-right: none;
+}
+
+nav ul {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    float: left;
+    text-align: center;
+    border-left: 1px solid transparent;
+    border-right: 1px solid #ccc;
+    width: 16.6667%; /* fallback for non-calc() browsers */
+    width: calc(100% / 5);
+    box-sizing: border-box;
+    box-shadow: 2px 0 8px -5px black;
+}
+
+nav ul li:first-child {
+    border-left: none;
+}
+nav ul li:last-child {
+    border:0px solid transparent;
+}
+nav ul li.current_page_item a{
+    color:#ffd200 !important;
+    text-decoration:none !important;
+}
+nav ul li a {
+    font-family: "Bebas Neue Regular";
+    text-transform: uppercase;
+    display: block;
+    font-size: 22px;
+    text-decoration: none;
+    color: black !important;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: 0 0 1px 0px #616161;
+}
+nav ul li a:hover{
+    color:#ffd200 !important;
+    text-decoration:none !important;
+}
+.absolute_fon{
+    background-image: url('./images/absolute_fon.png');
+    position:absolute;
+    height:75px;
+    bottom:0px;
+    width:100%;
+}
+.categoryName{
+    color:white;
+    font-family: "Exo 2";
+    font-size: 14px;
+    margin-top: 15px;
+}
+.category-after-name{
+    font-family: "Exo 2";
+    font-size: 12px;
+    color:white;
+}
+.countProductCategory{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height:22px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius:50%;
+    background-color: #808080;
+    color:black;"
+    font-family: "Exo 2";
+    font-size: 12px;
+}
+.textContent p{
+    font-size:20px;
+    color:#808080;
+}
+#map:after{
+  display: block;
+    content: '';
+    clear: both;
+}
+
+.table>tbody>tr>th:first-child{
+    border-left: 1px solid transparent !important;
+    border-right: 1px solid transparent !important;
+}
+.table>tbody>tr>td:first-child{
+    border-left: 1px solid transparent !important;
+}
+.table>tbody>tr>td:last-child{
+    border-right: 1px solid transparent !important;
+}
+.table>tbody>tr:last-child>td{
+    border-bottom: 1px solid transparent !important;
+}
+
+.tableOrenda>tbody>tr>td,
+.tableOrenda>tbody>tr>th,
+.tableOrenda>tfoot>tr>td,
+.tableOrenda>tfoot>tr>th,
+.tableOrenda>thead>tr>td,
+.tableOrenda>thead>tr>th{
+    border: 1px solid white !important;
+}
+.menuBlock{
+    border-top:2px solid #cccccc;
+    border-bottom:2px solid #cccccc;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+.styleTextPages,
+.styleTextPages p{
+    color:#808080;
+    font-size:12px;
+    font-family: "Exo 2";
+}
+.contactInfoHeader{
+    border-left:1px solid #ffd200;
+    border-bottom: 1px solid #ffd200;
+    color:#ffd200;
+    margin-bottom:0px;
+}
+.contactInfoHeaderBlock{
+    background-color: white;
+    border-right:1px solid #ffd200;
+    padding-left:20px;
+    padding-right:20px;
+    display: inline-block;
+    -webkit-transform: translateY(3px);
+    -moz-transform: translateY(3px);
+    -ms-transform: translateY(3px);
+    -o-transform: translateY(3px);
+    transform: translateY(3px);
+    font-size: 23px;
+    font-family: "Exo 2";
+}
+.contactInfoText{
+    color:#808080;
+    border-bottom: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    margin-top:0px;
+    padding-top:20px;
+}
+.contactInfoTextBlock{
+    background-color: white;
+    padding-left:20px;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transform: translateY(3px);
+    -moz-transform: translateY(3px);
+    -ms-transform: translateY(3px);
+    -o-transform: translateY(3px);
+    transform: translateY(3px);
+    padding-right:10px;
+}
+.form-control:focus {
+    border-color:#ffd200 !important;
+}
+.styleTextPages h1,
+.styleTextPages h2,
+.styleTextPages h3,
+.styleTextPages h4,
+.styleTextPages h5,
+.styleTextPages h6{
+    margin-top:15px;
+    margin-bottom:10px;
+    font-size:18px;
+    font-family: "Exo 2";
+}
+
+
+
+
+
+
+.textPageHeader{
+    border-left:1px solid #ffd200;
+    border-bottom: 1px solid #ffd200;
+    color:black;
+    margin-bottom:0px;
+}
+
+.textPageHeaderBlock{
+    background-color: white;
+    border-right:1px solid #ffd200;
+    padding-left:20px;
+    padding-right:20px;
+    display:inline-block;
+    transform: translateY(1px);
+    -moz-transform:translateY(1px);
+    -webkit-transform:translateY(1px);
+    -o-transform:translateY(1px);
+    -ms-transform:translateY(1px);
+}
+.styleTextPages ol li{
+    color: #808080;
+    font-size: 12px;;
+}
+.styleTextPages ul li {
+    color: #808080;
+    font-size: 12px;
+}
+.viewIcon{
+    display:none;
+}
+.styleTextPages p del{
+    text-decoration:none;
+}
+.tableAbout td del{
+    text-decoration: none;
+    padding-left: 12px;
+    display: block;
+    position: relative;
+    font-size: 14px;
+    color: #010101;
+    font-family: "Exo 2";
+}
+.tableAbout td del:before{
+    display: block;
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ffd200;
+    position: absolute;
+    left: 0;
+    top: 7px;
+}
+.styleTextPages p del:after{
+    display: block;
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ffd200;
+    float: left;
+    margin-top: 5px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.categ-product-head{
+    border-bottom: 1px solid #ffd200;
+    color: black;
+    margin: 25px 0;
+    border-left: 1px solid #ffd200;
+}
+.categ-product-head > .text-head{
+    font-family: "Exo 2";
+    font-size: 20px;
+    padding: 0 15px;
+    font-weight: 700;
+    border-right: 1px solid #ffd200;
+    background: white;
+    display: inline-block;
+    transform: translateY(1px);
+    -moz-transform: translateY(1px);
+    -webkit-transform: translateY(1px);
+    -o-transform: translateY(1px);
+    -ms-transform: translateY(1px);
+}
+.categ-product-head > .text-head a{
+    color: black;
+}
+.product_options, .tableOrenda{
+    font-family: "Exo 2";
+    font-size: 12px;
+}
+.tableOrenda th{
+    text-align: center;
+}
+.more-button{
+    background-color: #ffd200 !important;
+    color: white !important;
+    font-size: 13px !important;
+    border: 0  !important;
+    font-family: "Exo 2";
+    margin-right: 16px;
+}
+.rent-button{
+    background-color: #95b001 !important;
+    color:white !important;
+    border: 0 !important;
+    font-size: 13px !important;
+    font-family: "Exo 2";
+    margin-right: 16px;
+}
+.tableAbout>tbody>tr>td:first-child{
+    border:1px solid transparent;
+    border-right:1px solid #f2f2f2;
+}
+.tableAbout>tbody>tr>td:last-child{
+    border:1px solid transparent;
+    border-right:1px solid #f2f2f2;
+}
+.tableAbout>tbody{
+    border:1px solid red;
+}
+.tableAbout>tbody>tr:first-child>td{
+    border-bottom:1px solid #f2f2f2;
+}
+.tableAbout>tbody>tr>td>p{
+    color: #808080;
+    font-size: 20px;;
+}
+
+.tableAbout>tbody>tr>td>p>del:after{
+    display: block;
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ffd200;
+    float: left;
+    margin-top: 10px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.headTitle{
+    font-family: 'Bebas Neue Regular';
+    color:white;
+    text-transform: uppercase;
+    margin-top: 50px;
+    font-size:38px;
+}
+/*@media (min-width: 1200px) and (max-width: 1400px) {
+    .footer{
+        height:270px;
+        padding-top:80px;
+    }
+}*/
+.categ_name1:hover{
+    color:#ffd200;
+}
+.col-sm-4.homeCategoryHover {
+    margin-top: 4px;
+}
+
+.banner {
+    position: absolute;
+    right: 5px;
+    bottom: 20px;
+}
+
+.category-box-top {
+    width: 16%;
+    float: left;
+    margin-right: 0.5%;
+    height:140px;
+}
+.my_breadcrumbs{
+    font-family: "Exo 2";
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    padding-top: 15px;
+}
+.my_breadcrumbs a,
+.my_breadcrumbs a:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: #ffd200;
+
+}
+.my_breadcrumbs a,
+.my_breadcrumbs span{
+    color: #000000;
+}
+.mini_pic{
+    height: 93px;
+    width: 93px;
+    display: block;
+}
+.mini_pic img{
+    width: 100%;
+    height: 100%;
+}
+.left_menu{
+    background-color: #f2f2f2;
+
+}
+.left_menu_header{
+    background-color: #ffe25a;
+    height: 60px;
+    text-align: center;
+}
+.left_menu_body{
+    padding: 0 5px 5px 5px;
+    text-align: center;
+}
+.left_menu_link{
+    font-size: 14px;
+    font-family: "Exo 2";
+    font-weight: bold;
+    color: #000;
+    padding: 5px 0;
+    display: block;
+}
+.left_menu_link:hover,
+.left_menu_link:focus,
+.left_menu_link:active{
+    color: #ffe25a;
+}
+.left_menu_title{
+    font-family: "Exo 2";
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    font-size: 18px;
+    padding-top: 15px;
+}
+.left_menu_elem{
+    margin: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+}

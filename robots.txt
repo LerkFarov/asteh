@@ -1,0 +1,24 @@
+User-agent: Yandex
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /categories/?id=*&yclid=*
+Disallow: /product/?id=1*
+Disallow: /product/?id=2*
+Disallow: /product/?id=3*
+Disallow: /product/$
+Disallow: /categories/?id=$
+Crawl-Delay: 2
+Host: asteh.su
+
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /categories/?id=*&yclid=*
+Disallow: /product/?id=1*
+Disallow: /product/?id=2*
+Disallow: /product/?id=3*
+Disallow: /product/$
+Disallow: /categories/?id=$
+Crawl-Delay: 2
+
+Sitemap: http://asteh.su/sitemap.xml

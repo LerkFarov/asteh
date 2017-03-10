@@ -1,0 +1,19 @@
+.wrap_managers table th{
+    text-align: left;
+}
+.wrap_managers table td input{
+    text-align: left;
+    height: 40px;
+}
+#n_user td, #n_user th{
+	padding: 5px 15px;
+}
+.edit_user table th{
+    text-align: left;
+    padding: 10px;
+}
+
+.edit_user table td{
+    line-height: 50px;
+    padding: 0 5px;
+}
