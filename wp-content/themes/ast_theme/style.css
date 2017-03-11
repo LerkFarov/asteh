@@ -637,9 +637,9 @@ nav ul li a:hover{
 .left_menu_link{
     font-size: 14px;
     font-family: "Exo 2";
-    /*font-weight: bold;*/
+    /* font-weight: bold; */
     color: #000;
-    padding: 5px 0;
+    padding: 2px 0;
     display: block;
 }
 .left_menu_link:hover,
@@ -665,6 +665,6 @@ nav ul li a:hover{
     align-items: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;*/
-    box-shadow: 0px 11px 15px -15px #da8100;
-    padding: 5px 0;
+    box-shadow: 0px 11px 15px -13px #da8100;
+    padding: 3px 0;
 }
