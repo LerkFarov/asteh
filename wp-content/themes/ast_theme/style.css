@@ -628,7 +628,7 @@ nav ul li a:hover{
 }
 .left_menu_header{
     background-color: #ffe25a;
-    height: 50px;
+    height: 30px;
     text-align: center;
 }
 .left_menu_body{
@@ -653,7 +653,7 @@ nav ul li a:hover{
     text-transform: uppercase;
     display: block;
     font-size: 13px;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 .left_menu_elem{
     margin: 0;
