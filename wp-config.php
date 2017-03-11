@@ -24,7 +24,7 @@ define('DB_NAME', 'asteh');
 define('DB_USER', 'roketD');
 
 /** Пароль к базе данных MySQL */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'X4jaTHJgHBnz1WMk');
 
 /** Имя сервера MySQL */
 define('DB_HOST', 'localhost');
