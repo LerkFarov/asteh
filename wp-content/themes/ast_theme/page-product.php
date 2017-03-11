@@ -84,10 +84,10 @@
         $q_pp = "SELECT cats.`name`, cats.id FROM ".$wpdb->prefix."gc_categories AS cats WHERE cats.id = '".$res_product_cat[0]->parent."'";
         $res_product_cat_p = $wpdb->get_results($q_pp);
         $my_breadcrumbs = "<a href=\"http://".$_SERVER['SERVER_NAME']."/categories/?id=".$res_product_cat_p[0]->id."\">".$res_product_cat_p[0]->name."<span> > </span>".
-        "<a href=\"http://".$_SERVER['SERVER_NAME']."/categories/?id=".$res_product_cat[0]->id."\">".$res_product_cat[0]->name."</a><span> > </span>".
+        "<a href=\"http://".$_SERVER['SERVER_NAME']."/categories/?id=".$res_product_cat[0]->id."&pid=".$_GET['pid']."\">".$res_product_cat[0]->name."</a><span> > </span>".
         "<span>".$category[0]->name."</span>";
     }else{
-        $my_breadcrumbs = "<a href=\"http://".$_SERVER['SERVER_NAME']."/categories/?id=".$res_product_cat[0]->id."\">".$res_product_cat[0]->name."</a><span> > </span>".
+        $my_breadcrumbs = "<a href=\"http://".$_SERVER['SERVER_NAME']."/categories/?id=".$res_product_cat[0]->id."&pid=".$_GET['pid']."\">".$res_product_cat[0]->name."</a><span> > </span>".
         "<span>".$category[0]->name."</span>";
 
     }
@@ -123,7 +123,7 @@
                         ?>
                         <p class="left_menu_elem">
                             <a title="<?= $category->second_name; ?>" href="<?=get_home_url();?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
-                               style="<?php if($category->id == $_GET['cat_id']){
+                               style="<?php if($category->id == $_GET['cat_id'] || $category->id == $_GET['pid']){
                                    echo "color:#da8100;";
                                }?>"
                             >

@@ -191,7 +191,7 @@ require_once("scripts/prod_get_scripts.php");
                             <div class="col-sm-12" style="padding: 0;">
                                 <div class="categ-product-head">
                                     <div class="text-head"><a title="<?= $product->name; ?>"
-                                                              href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>"><?= $product->name; ?></a>
+                                                              href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>&pid=<?=$_GET['pid']?>"><?= $product->name; ?></a>
                                     </div>
                                 </div>
                             </div>
