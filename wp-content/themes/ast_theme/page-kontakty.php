@@ -14,7 +14,7 @@ get_header(); ?>
 </div>
 
     <div class="col-sm-12"
-         style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;padding-top: 10px;padding-bottom: 10px;margin-bottom: 10px;margin-top: 20px">
+         style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;padding-top: 10px;padding-bottom: 10px;margin-bottom: 10px;margin-top: 10px">
         <nav>
             <?php
             wp_nav_menu(array(

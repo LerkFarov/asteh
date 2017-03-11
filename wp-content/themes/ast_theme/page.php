@@ -6,17 +6,18 @@
         </h1>
     </div>
 </div>
-<div class="col-sm-12 menuBlock">
-    <nav>
-        <?php
-        wp_nav_menu( array(
-            'menu_class'=>'',
-            'theme_location'=>'main',
-            'after'=>''
-        ) );
-        ?>
-    </nav>
-</div>
+    <div class="col-sm-12"
+         style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;padding-top: 10px;padding-bottom: 10px;margin-bottom: 10px;margin-top: 10px">
+        <nav>
+            <?php
+            wp_nav_menu(array(
+                'menu_class' => '',
+                'theme_location' => 'main',
+                'after' => ''
+            ));
+            ?>
+        </nav>
+    </div>
 
 <div class="col-sm-12">
     <section class="main-content">

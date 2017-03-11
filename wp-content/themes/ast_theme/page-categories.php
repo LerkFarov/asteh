@@ -98,7 +98,7 @@ require_once("scripts/prod_get_scripts.php");
 </div>
 
 <div class="col-sm-12"
-     style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;padding-top: 10px;padding-bottom: 10px;margin-bottom: 10px;margin-top: 20px">
+     style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;padding-top: 10px;padding-bottom: 10px;margin-bottom: 10px;margin-top: 10px">
     <nav>
         <?php
         wp_nav_menu(array(
@@ -113,10 +113,10 @@ require_once("scripts/prod_get_scripts.php");
 <div class="row">
 
         <div class="col-sm-12" style="padding: 0;">
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="width:196px;">
                 <div class="left_menu">
                     <div class="left_menu_header">
-                        <p class="left_menu_title">Виды техники</p>
+                        <p class="left_menu_title">Аренда инструмента</p>
                     </div>
                     <div class="left_menu_body">
 
@@ -126,8 +126,8 @@ require_once("scripts/prod_get_scripts.php");
                             ?>
                             <p class="left_menu_elem">
                                 <a title="<?= $category->second_name; ?>" href="<?=get_home_url();?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
-                                   style="<?php if($category->id == $_GET['id']){
-                                       echo "color:#ffe25a;";
+                                   style="<?php if($category->id == $_GET['id'] || $category->id == $_GET['pid']){
+                                       echo "color:#da8100;";
                                    }?>"
                                 >
                                     <?= $category->second_name; ?>
@@ -139,14 +139,14 @@ require_once("scripts/prod_get_scripts.php");
                 </div>
 
             </div>
-            <div class="col-sm-9" style="padding: 0;">
+            <div class="col-sm-9" style="padding: 0 5px 0 0;">
                 <?php
 
                 $subcats = get_sub_cats($wpdb, $_GET['id']);
 
                 if (isset($subcats) && !empty($subcats)) {
                     ?>
-                    <div class="col-sm-12" style="margin-bottom: 25px; padding:0;">
+                    <div class="col-sm-12" style="margin-bottom: 25px; padding: 0 5px 0 0;">
                         <?php
 
                         foreach ($subcats as $category) {
@@ -156,7 +156,7 @@ require_once("scripts/prod_get_scripts.php");
                             ?>
                             <div class="col-sm-4 homeCategoryHover"
                                  style="position:relative;padding-left:2px;padding-right: 2px; margin-top:4px;">
-                                <a title="<?= $category->name; ?>" href="/categories/?id=<?= $category->id; ?>">
+                                <a title="<?= $category->name; ?>" href="/categories/?id=<?= $category->id; ?>&pid=<?= $_GET['id'] ?>">
                                     <img src="<?= get_home_url(); ?><?= $category->image; ?>" alt="<?= $category->name; ?>"
                                          style="width:100%;height:194px;">
                                     <div class="col-sm-12" style="padding:0px;position:relative;">

@@ -37,7 +37,7 @@ get_header(); ?>
         <?php } ?>
     </div>
     <div class="col-sm-12"
-         style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;padding-top: 10px;padding-bottom: 10px;margin-bottom: 10px;margin-top: 20px">
+         style="border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;padding-top: 10px;padding-bottom: 10px;margin-bottom: 10px;margin-top: -10px">
         <nav>
             <?php
             wp_nav_menu(array(
@@ -51,10 +51,10 @@ get_header(); ?>
 
     <div class="col-sm-12" style="margin-bottom: 25px; padding:0;">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="width:201px;">
                 <div class="left_menu">
                     <div class="left_menu_header">
-                        <p class="left_menu_title">Виды техники</p>
+                        <p class="left_menu_title">Аренда инструмента</p>
                     </div>
                     <div class="left_menu_body">
 
@@ -77,7 +77,7 @@ get_header(); ?>
                 </div>
 
             </div>
-                <div class="col-sm-9">
+                <div class="col-sm-9" >
                     <?php
                     foreach ($categories as $category) { ?>
                         <div class="category-box-top" style="text-align: center">
