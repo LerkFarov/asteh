@@ -321,7 +321,7 @@
         <div class="col-sm-7">
             <div class="row" style="padding-top: 20px">
                 <?php if (isset($product->description)) { ?>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="padding-left: 40px;">
                         <section>
                             <div class="categ-product-head"><div class="text-head">Особенности</div></div>
                             <div class="textContent">
