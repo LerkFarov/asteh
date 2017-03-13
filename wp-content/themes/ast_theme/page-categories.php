@@ -199,7 +199,7 @@ require_once("scripts/prod_get_scripts.php");
                                 <?php
                                 if (isset($product->images)) {
                                     foreach ($product->images as $image) { ?>
-                                        <a href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>">
+                                        <a href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>&pid=<?=$_GET['pid']?>">
                                             <img src="<?= get_home_url(); ?>/<?= $image->url; ?>" alt="<?= $product->name; ?>"
                                                  style="width:100%;border:1px solid #d9d9d9;">
                                         </a>
@@ -246,7 +246,7 @@ require_once("scripts/prod_get_scripts.php");
                                 <?php } ?>
                                 <div class="col-sm-8">
                                     <div class="row">
-                                        <a title="Подробнее" href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>">
+                                        <a title="Подробнее" href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>&pid=<?=$_GET['pid']?>">
                                             <button class="btn btn-default pull-right more-button"><b>Подробнее</b></button>
                                         </a>
                                     </div>
