@@ -38,7 +38,8 @@ require_once("scripts/prod_get_scripts.php");
     </div>
     <div class="ast_logo_block">
         <a title="на главную" href="/"><img
-                src="<?php echo esc_url(get_template_directory_uri()); ?>/images/ast_logo.png" alt="Аренда инструмента"></a>
+                    src="<?php echo esc_url(get_template_directory_uri()); ?>/images/ast_logo.png"
+                    alt="Аренда инструмента"></a>
     </div>
 </div>
 <div class="modal fade" id="myModal" role="dialog" style="margin-top: 200px;">
@@ -74,7 +75,7 @@ require_once("scripts/prod_get_scripts.php");
                 $category = get_category_name($wpdb, $_GET['id']);
                 echo $category[0]->name;
 
-                $q = "SELECT cats.parent, cats.`name`, cats.id FROM ".$wpdb->prefix."gc_categories AS cats WHERE cats.id = '".$_GET['id']."'";
+                $q = "SELECT cats.parent, cats.`name`, cats.id FROM " . $wpdb->prefix . "gc_categories AS cats WHERE cats.id = '" . $_GET['id'] . "'";
 
                 $res = $wpdb->get_results($q);
                 ?>
@@ -85,13 +86,13 @@ require_once("scripts/prod_get_scripts.php");
 
 <div class="col-sm-12 my_breadcrumbs">
     <?php
-        if($res[0]->parent != '0'){
-            $q_p = "SELECT cats.`name`, cats.id FROM ".$wpdb->prefix."gc_categories AS cats WHERE cats.id = '".$res[0]->parent."'";
-            $res_p = $wpdb->get_results($q_p);
-            $my_breadcrumbs = "<a href='http://".$_SERVER['SERVER_NAME']."/categories/?id=".$res_p[0]->id."'>".$res_p[0]->name."</a><span> > <span>".$res[0]->name."</span>";
-        }else{
-            $my_breadcrumbs = "<span>".$res[0]->name."</span>";
-        }
+    if ($res[0]->parent != '0') {
+        $q_p = "SELECT cats.`name`, cats.id FROM " . $wpdb->prefix . "gc_categories AS cats WHERE cats.id = '" . $res[0]->parent . "'";
+        $res_p = $wpdb->get_results($q_p);
+        $my_breadcrumbs = "<a href='http://" . $_SERVER['SERVER_NAME'] . "/categories/?id=" . $res_p[0]->id . "'>" . $res_p[0]->name . "</a><span> > <span>" . $res[0]->name . "</span>";
+    } else {
+        $my_breadcrumbs = "<span>" . $res[0]->name . "</span>";
+    }
     echo($my_breadcrumbs);
     ?>
 
@@ -110,178 +111,186 @@ require_once("scripts/prod_get_scripts.php");
     </nav>
 </div>
 
-<div class="row">
 
-        <div class="col-sm-12" style="padding: 0;">
-            <div class="col-sm-3" style="width:196px;">
-                <div class="left_menu">
-                    <div class="left_menu_header">
-                        <p class="left_menu_title">Аренда инструмента</p>
-                    </div>
-                    <div class="left_menu_body">
 
-                        <?php
-                        foreach ($categories as $category) {
-
-                            ?>
-                            <p class="left_menu_elem">
-                                <a title="<?= $category->second_name; ?>" href="<?=get_home_url();?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
-                                   style="<?php if($category->id == $_GET['id'] || $category->id == $_GET['pid']){
-                                       echo "color:#da8100;";
-                                   }?>"
-                                >
-                                    <?= $category->second_name; ?>
-                                </a>
-                            </p>
-                        <?php } ?>
-
-                    </div>
+<div style="height:100%; position: relative; margin-top: 200px;">
+        <div class="col-sm-3" style="padding: 0;    position: absolute;    top: 0px;     width: 165px;   height: 100%;">
+            <div class="left_menu" style="height: 100%;">
+                <div class="left_menu_header">
+                    <p class="left_menu_title">Аренда инструмента</p>
                 </div>
+                <div class="left_menu_body">
 
-            </div>
-            <div class="col-sm-9" style="padding: 0 5px 0 0;">
-                <?php
-
-                $subcats = get_sub_cats($wpdb, $_GET['id']);
-
-                if (isset($subcats) && !empty($subcats)) {
-                    ?>
-                    <div class="col-sm-12" style="margin-bottom: 25px; padding: 0 5px 0 0;">
-                        <?php
-
-                        foreach ($subcats as $category) {
-                            /* if ($i == 3) {
-                                 break;
-                             }*/
-                            ?>
-                            <div class="col-sm-4 homeCategoryHover"
-                                 style="position:relative;padding-left:2px;padding-right: 2px; margin-top:4px;">
-                                <a title="<?= $category->name; ?>" href="/categories/?id=<?= $category->id; ?>&pid=<?= $_GET['id'] ?>">
-                                    <img src="<?= get_home_url(); ?><?= $category->image; ?>" alt="<?= $category->name; ?>"
-                                         style="width:100%;height:194px;">
-                                    <div class="col-sm-12" style="padding:0px;position:relative;">
-                                        <div class="absolute_fon" style="padding-left:15px; height: 82px;">
-                                            <div class="categoryName"><?= $category->name; ?> <img
-                                                        src="<?php echo esc_url(get_template_directory_uri()); ?>/images/viewIcon.png"
-                                                        class="viewIcon"></div>
-                                            <span class="category-after-name">Всего</span>
-                                            <span
-                                                    class="countProductCategory"><?= $category->p_count ? $category->p_count : 0; ?></span>
-                                            <span class="category-after-name">моделей</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </div>
                     <?php
-                }
+                    foreach ($categories as $category) {
 
+                        ?>
+                        <p class="left_menu_elem">
+                            <a title="<?= $category->second_name; ?>"
+                               href="<?= get_home_url(); ?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
+                               style="<?php if ($category->id == $_GET['id'] || $category->id == $_GET['pid']) {
+                                   echo "color:#da8100;";
+                               } ?>"
+                            >
+                                <?= $category->second_name; ?>
+                            </a>
+                        </p>
+                    <?php } ?>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-9" style="padding: 0 5px 0 0; float: right;">
+            <?php
+
+            $subcats = get_sub_cats($wpdb, $_GET['id']);
+
+            if (isset($subcats) && !empty($subcats)) {
                 ?>
+                <div class="col-sm-12" style="margin-bottom: 25px; padding: 0 5px 0 0;">
+                    <?php
 
+                    foreach ($subcats as $category) {
+                        /* if ($i == 3) {
+                             break;
+                         }*/
+                        ?>
+                        <div class="col-sm-4 homeCategoryHover"
+                             style="position:relative;padding-left:2px;padding-right: 2px; margin-top:4px;">
+                            <a title="<?= $category->name; ?>"
+                               href="/categories/?id=<?= $category->id; ?>&pid=<?= $_GET['id'] ?>">
+                                <img src="<?= get_home_url(); ?><?= $category->image; ?>" alt="<?= $category->name; ?>"
+                                     style="width:100%;height:194px;">
+                                <div class="col-sm-12" style="padding:0px;position:relative;">
+                                    <div class="absolute_fon" style="padding-left:15px; height: 82px;">
+                                        <div class="categoryName"><?= $category->name; ?> <img
+                                                    src="<?php echo esc_url(get_template_directory_uri()); ?>/images/viewIcon.png"
+                                                    class="viewIcon"></div>
+                                        <span class="category-after-name">Всего</span>
+                                        <span
+                                                class="countProductCategory"><?= $category->p_count ? $category->p_count : 0; ?></span>
+                                        <span class="category-after-name">моделей</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
                 <?php
+            }
 
-                $products = get_product_by_cat($_GET['id'], $wpdb);
-                foreach ($products as $product) { ?>
+            ?>
+
+            <?php
+
+            $products = get_product_by_cat($_GET['id'], $wpdb);
+            foreach ($products as $product) { ?>
+                <div class="col-sm-12" style="padding: 0;">
+
                     <div class="col-sm-12" style="padding: 0;">
-
                         <div class="col-sm-12" style="padding: 0;">
-                            <div class="col-sm-12" style="padding: 0;">
-                                <div class="categ-product-head">
-                                    <div class="text-head"><a title="<?= $product->name; ?>"
-                                                              href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>&pid=<?=$_GET['pid']?>"><?= $product->name; ?></a>
-                                    </div>
+                            <div class="categ-product-head">
+                                <div class="text-head"><a title="<?= $product->name; ?>"
+                                                          href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?= $_GET['id'] ?>&pid=<?= $_GET['pid'] ?>"><?= $product->name; ?></a>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <?php
-                                if (isset($product->images)) {
-                                    foreach ($product->images as $image) { ?>
-                                        <a href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>&pid=<?=$_GET['pid']?>">
-                                            <img src="<?= get_home_url(); ?>/<?= $image->url; ?>" alt="<?= $product->name; ?>"
-                                                 style="width:100%;border:1px solid #d9d9d9;">
-                                        </a>
-                                    <?php }
+                        </div>
+                        <div class="col-sm-3">
+                            <?php
+                            if (isset($product->images)) {
+                                foreach ($product->images as $image) { ?>
+                                    <a href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?= $_GET['id'] ?>&pid=<?= $_GET['pid'] ?>">
+                                        <img src="<?= get_home_url(); ?>/<?= $image->url; ?>"
+                                             alt="<?= $product->name; ?>"
+                                             style="width:100%;border:1px solid #d9d9d9;">
+                                    </a>
+                                <?php }
 
-                                } ?>
-                            </div>
-                            <div class="col-sm-9" style="padding: 0;">
-                                <div class="col-sm-8">
-                                    <?php if (isset($product->params)) { ?>
-                                        <table class="table table-bordered product_options">
+                            } ?>
+                        </div>
+                        <div class="col-sm-9" style="padding: 0;">
+                            <div class="col-sm-8">
+                                <?php if (isset($product->params)) { ?>
+                                    <table class="table table-bordered product_options">
+                                        <tr>
+                                            <th style="background-color: #f2f2f2" colspan="3">Основные технические
+                                                характеристики
+                                            </th>
+                                        </tr>
+                                        <?php foreach ($product->params as $param) { ?>
                                             <tr>
-                                                <th style="background-color: #f2f2f2" colspan="3">Основные технические характеристики
-                                                </th>
+                                                <td><?= $param->name; ?></td>
+                                                <td><?= $param->unit; ?></td>
+                                                <td><?= $param->value; ?></td>
                                             </tr>
-                                            <?php foreach ($product->params as $param) { ?>
-                                                <tr>
-                                                    <td><?= $param->name; ?></td>
-                                                    <td><?= $param->unit; ?></td>
-                                                    <td><?= $param->value; ?></td>
-                                                </tr>
-                                            <?php } ?>
-                                        </table>
-                                    <?php } ?>
-
-                                </div>
-                                <?php if (isset($product->prices)) { ?>
-                                    <div class="col-sm-4" style="padding: 0;">
-                                        <table class="table tableOrenda table-bordered">
-                                            <tr>
-
-                                                <th style="background-color: #b3b3b3;color:white;"><?php echo $product->type; ?></th>
-                                                <th style="background-color: #b3b3b3;color:white;">Руб.</th>
-                                            </tr>
-                                            <?php foreach ($product->prices as $price) { ?>
-                                                <tr>
-                                                    <td style="background-color: #f2f2f2;color:#808080;"><?= $price->name; ?></td>
-                                                    <td style="background-color: #f2f2f2;color:#95b001;"><?= $price->value; ?></td>
-                                                </tr>
-                                            <?php } ?>
-                                        </table>
-
-                                    </div>
+                                        <?php } ?>
+                                    </table>
                                 <?php } ?>
-                                <div class="col-sm-8">
-                                    <div class="row">
-                                        <a title="Подробнее" href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?=$_GET['id']?>&pid=<?=$_GET['pid']?>">
-                                            <button class="btn btn-default pull-right more-button"><b>Подробнее</b></button>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4" style="padding: 0;">
-                                    <div class="row">
-                                        <button style="width:80%" data-toggle="modal" data-target="#myModal<?= $product->id; ?>"
-                                                class="btn btn-default pull-right rent-button" data-name="<?= $product->name; ?>">
-                                            <b><?php
-                                                switch ($product->type) {
-                                                    case "Аренда":
-                                                        echo "Арендовать";
-                                                        break;
-                                                    case "Продажа":
-                                                        echo "Купить";
-                                                        break;
 
-                                                }
-                                                ?></b></button>
-                                    </div>
+                            </div>
+                            <?php if (isset($product->prices)) { ?>
+                                <div class="col-sm-4" style="padding: 0;">
+                                    <table class="table tableOrenda table-bordered">
+                                        <tr>
+
+                                            <th style="background-color: #b3b3b3;color:white;"><?php echo $product->type; ?></th>
+                                            <th style="background-color: #b3b3b3;color:white;">Руб.</th>
+                                        </tr>
+                                        <?php foreach ($product->prices as $price) { ?>
+                                            <tr>
+                                                <td style="background-color: #f2f2f2;color:#808080;"><?= $price->name; ?></td>
+                                                <td style="background-color: #f2f2f2;color:#95b001;"><?= $price->value; ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
+
+                                </div>
+                            <?php } ?>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <a title="Подробнее"
+                                       href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?= $_GET['id'] ?>&pid=<?= $_GET['pid'] ?>">
+                                        <button class="btn btn-default pull-right more-button"><b>Подробнее</b></button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 0;">
+                                <div class="row">
+                                    <button style="width:80%" data-toggle="modal"
+                                            data-target="#myModal<?= $product->id; ?>"
+                                            class="btn btn-default pull-right rent-button"
+                                            data-name="<?= $product->name; ?>">
+                                        <b><?php
+                                            switch ($product->type) {
+                                                case "Аренда":
+                                                    echo "Арендовать";
+                                                    break;
+                                                case "Продажа":
+                                                    echo "Купить";
+                                                    break;
+
+                                            }
+                                            ?></b></button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="modal fade" id="myModal<?= $product->id; ?>" role="dialog" style="margin-top: 200px;">
-                        <div class="modal-dialog">
+                <div class="modal fade" id="myModal<?= $product->id; ?>" role="dialog" style="margin-top: 200px;">
+                    <div class="modal-dialog">
 
-                            <!-- Modal content-->
-                            <div class="modal-content" style="background-color: #f2f2f2;width:300px;margin-left: 150px">
-                                <div class="modal-header" style="text-align: center">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h3 class="modal-title" style='padding:0px;margin-top:30px;margin-bottom: 20px' align='center'>
-                                        ЗАПОЛНИТЬ ФОРМУ</h3>
-                                    <div style="padding-left: 20px">
+                        <!-- Modal content-->
+                        <div class="modal-content" style="background-color: #f2f2f2;width:300px;margin-left: 150px">
+                            <div class="modal-header" style="text-align: center">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title" style='padding:0px;margin-top:30px;margin-bottom: 20px'
+                                    align='center'>
+                                    ЗАПОЛНИТЬ ФОРМУ</h3>
+                                <div style="padding-left: 20px">
                         <span style="float:left;"><?php
                             switch ($product->type) {
                                 case "Аренда":
@@ -293,35 +302,47 @@ require_once("scripts/prod_get_scripts.php");
 
                             }
                             ?>:</span><br>
-                                        <h4 style="color:#ffd200;text-align:left"><?= $product->name; ?></h4>
-                                    </div>
-                                    <form>
-                                        <input type="hidden" name="type" value="orenda">
-                                        <input type="hidden" name="tovar" value="<?= $product->name; ?>">
-                                        <input type="text" class="form-control" placeholder="Ваше имя:" name="name"
-                                               style="width:90%;margin:0 auto; margin-bottom:30px;" required>
-                                        <input type="text" class="form-control" placeholder="Ваш номер телефона:" name="telefon"
-                                               style="width:90%;margin:0 auto;margin-bottom:30px" required>
-                                        <textarea class="form-control" placeholder="Примечания" name="description"
-                                                  style="width:90%;margin:0 auto;margin-bottom:30px"></textarea>
-                                        <input type="submit" class="btn btn-default"
-                                               style="background-color: #95b001;color:white;margin:0 auto;font-size: 20px"
-                                               value="Заказать">
-                                    </form>
+                                    <h4 style="color:#ffd200;text-align:left"><?= $product->name; ?></h4>
                                 </div>
+                                <form>
+                                    <input type="hidden" name="type" value="orenda">
+                                    <input type="hidden" name="tovar" value="<?= $product->name; ?>">
+                                    <input type="text" class="form-control" placeholder="Ваше имя:" name="name"
+                                           style="width:90%;margin:0 auto; margin-bottom:30px;" required>
+                                    <input type="text" class="form-control" placeholder="Ваш номер телефона:"
+                                           name="telefon"
+                                           style="width:90%;margin:0 auto;margin-bottom:30px" required>
+                                    <textarea class="form-control" placeholder="Примечания" name="description"
+                                              style="width:90%;margin:0 auto;margin-bottom:30px"></textarea>
+                                    <input type="submit" class="btn btn-default"
+                                           style="background-color: #95b001;color:white;margin:0 auto;font-size: 20px"
+                                           value="Заказать">
+                                </form>
                             </div>
-
                         </div>
+
                     </div>
-                <?php } ?>
+                </div>
+            <?php } ?>
+            <div class="col-sm-12 styleTextPages ">
+
+                <h2><?php $category = get_category_name($wpdb, $_GET['id']);
+                    echo $category[0]->name; ?></h2>
+                <div class="col-sm-12 textContent">
+                    <?php $desc = get_category_desc($wpdb, $_GET['id']);
+                    echo $desc[0]->description;
+                    ?>
+                </div>
             </div>
         </div>
-</div>
+        <div style="clear:both;"></div>
+    </div>
+
 
 <!--
 <div class="col-sm-12" style="padding: 20px 10px; display: none">
     <?php
-    foreach ($categories as $category) { ?>
+foreach ($categories as $category) { ?>
         <div class="category-box-top" style="text-align: center">
             <a href="<?= get_home_url(); ?>/categories/?id=<?= $category->id; ?>">
                 <img src="<?= get_home_url(); ?><?= $category->thumbnail; ?>" alt="" style="height:78px;">
@@ -333,16 +354,7 @@ require_once("scripts/prod_get_scripts.php");
 -->
 <div class="main-wrap">
     <section class="main-content">
-        <div class="col-sm-12 styleTextPages ">
 
-            <h2><?php $category = get_category_name($wpdb, $_GET['id']);
-                echo $category[0]->name; ?></h2>
-            <div class="col-sm-12 textContent">
-                <?php $desc = get_category_desc($wpdb, $_GET['id']);
-                echo $desc[0]->description;
-                ?>
-            </div>
-        </div>
     </section>
 </div>
 <div style="clear: both"></div>

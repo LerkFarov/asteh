@@ -356,6 +356,9 @@ nav ul li a:hover{
     margin-bottom:20px;
 }
 
+.styleTextPages{
+    min-height: 250px !important;
+}
 .styleTextPages,
 .styleTextPages p{
     color:#808080;

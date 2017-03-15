@@ -48,64 +48,68 @@ get_header(); ?>
             ?>
         </nav>
     </div>
+    <div style="height:100%; position: relative; margin-top: 75px;">
+        <div class="col-sm-3" style="padding: 0;    position: absolute;    top: 0px;     width: 165px;   height: 100%;">
+            <div class="row" style="height: 100%;">
+                <div class="col-sm-12" style="width:201px;height: 100%;">
+                    <div class="left_menu" style="height: 100%;">
+                        <div class="left_menu_header">
+                            <p class="left_menu_title">Аренда инструмента</p>
+                        </div>
+                        <div class="left_menu_body">
 
-    <div class="col-sm-12" style="margin-bottom: 25px; padding:0;">
-        <div class="row">
-            <div class="col-sm-3" style="width:201px;">
-                <div class="left_menu">
-                    <div class="left_menu_header">
-                        <p class="left_menu_title">Аренда инструмента</p>
+                            <?php
+                            foreach ($categories as $category) {
+
+                                ?>
+                                <div class="left_menu_elem">
+                                    <a title="<?= $category->second_name; ?>" href="<?=get_home_url();?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
+                                       style="<?php if($category->id == $_GET['id']){
+                                           echo "color:#ffe25a;";
+                                       }?>"
+                                    >
+                                        <?= $category->second_name; ?>
+                                    </a>
+                                </div>
+                            <?php } ?>
+
+                        </div>
                     </div>
-                    <div class="left_menu_body">
 
-                        <?php
-                        foreach ($categories as $category) {
-
-                            ?>
-                            <div class="left_menu_elem">
-                                <a title="<?= $category->second_name; ?>" href="<?=get_home_url();?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
-                                   style="<?php if($category->id == $_GET['id']){
-                                       echo "color:#ffe25a;";
-                                   }?>"
-                                >
-                                    <?= $category->second_name; ?>
-                                </a>
-                            </div>
-                        <?php } ?>
-
-                    </div>
                 </div>
 
             </div>
-                <div class="col-sm-9" >
-                    <?php
-                    foreach ($categories as $category) { ?>
-                        <div class="category-box-top" style="text-align: center">
-                            <a title="<?= $category->name; ?>" href="<?=get_home_url();?>/categories/?id=<?= $category->id; ?>">
-                                <img src="<?=get_home_url();?><?= $category->thumbnail; ?>" alt="<?= $category->name; ?>" title="<?= $category->name; ?>" style="height: 78px;">
-                                <div class="categ_name1"><?= $category->name; ?></div>
-                            </a>
-                        </div>
-                    <?php } ?>
-
-                </div>
         </div>
+        <div class="col-sm-9" style="padding: 0; float: right;">
+            <div class="col-sm-12" style="padding: 0;">
+                <?php
+                foreach ($categories as $category) { ?>
+                    <div class="category-box-top" style="text-align: center">
+                        <a title="<?= $category->name; ?>" href="<?=get_home_url();?>/categories/?id=<?= $category->id; ?>">
+                            <img src="<?=get_home_url();?><?= $category->thumbnail; ?>" alt="<?= $category->name; ?>" title="<?= $category->name; ?>" style="height: 78px;">
+                            <div class="categ_name1"><?= $category->name; ?></div>
+                        </a>
+                    </div>
+                <?php } ?>
+
+            </div>
+            <div class="col-sm-12 styleTextPages">
+                <?php
+                if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <h1><?php the_title(); ?></h1>
+                    <?php the_content() ?>
+                    <?php
+                endwhile;
+                else:
+                    _e('Извините, такой страницы не найдено!');
+                endif;
+                ?>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
     </div>
 
-    <section class="main-content">
-        <div class="col-sm-12 styleTextPages">
-            <?php
-            if (have_posts()) : while (have_posts()) : the_post(); ?>
-                <h1><?php the_title(); ?></h1>
-                <?php the_content() ?>
-                <?php
-            endwhile;
-            else:
-                _e('Извините, такой страницы не найдено!');
-            endif;
-            ?>
-        </div>
-    </section>
+
     <div style="clear:both;"></div>
 </div>
 <?php get_footer(); ?>
