@@ -113,7 +113,7 @@ require_once("scripts/prod_get_scripts.php");
 
 
 
-<div style="height:100%; position: relative; margin-top: 200px;">
+<div style="height:100%; position: relative; margin-top: 200px;     min-height: 1100px;">
         <div class="col-sm-3" style="padding: 0;    position: absolute;    top: 0px;     width: 165px;   height: 100%;">
             <div class="left_menu" style="height: 100%;">
                 <div class="left_menu_header">
