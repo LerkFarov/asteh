@@ -368,8 +368,148 @@ function del_product($data, $db){
 }
 
 function upd_product($id, $data, $db){
-    del_product($id, $db);
-    add_product($data, $db);
+    $id*=1;
+    $b = json_decode($data);
+    $images     = Array();
+    $images_order = 1;
+
+    $attributes = Array();
+    $attributes_order = 1;
+
+    $prices     = Array();
+    $prices_order = 1;
+
+    foreach($b as $key => $val){
+        /*start foreach*/
+        if($key == "prod_name"){
+            $prod_name = $val;
+        }
+        if($key == "prod_cat"){
+            $prod_cat = $val;
+        }
+        if($key == "prod_desc"){
+            $prod_desc = $val;
+        }
+        if($key == "prod_type"){
+            $prod_type = $val;
+        }
+        if($key == "prod_inst_b"){
+            $prod_inst_b = $val;
+        }
+        if($key == "prod_inst_url"){
+            $prod_inst_url = $val;
+        }
+        if(preg_match("/^prod_main_img_url/", $key)){
+            $images[0] = $val;
+
+        }
+        if(preg_match("/^prod_sec_img_url/", $key)){
+            $images[$images_order] = $val;
+            $images_order++;
+        }
+        if(preg_match("/^prod_price/", $key)){
+            $pr_id = str_replace("prod_price","",  $key);
+            $prices[$prices_order] = Array($pr_id, $val, $prices_order);
+            $prices_order++;
+        }
+        if(preg_match("/^new_price_v/", $key)){
+            $prices[$prices_order] = Array('-1', '', $val, $prices_order);
+        }
+        if(preg_match("/^new_price_n/", $key)){
+            $prices[$prices_order][1] = $val;
+            $prices_order++;
+        }
+        if(preg_match("/^prod_att/", $key)){
+            $att_id = str_replace("prod_att","",  $key);
+            $attributes[$attributes_order] = Array($att_id, $val, $attributes_order);
+            $attributes_order++;
+        }
+        if(preg_match("/^new_att_v/", $key)){
+            $attributes[$attributes_order] = Array('-1','', '', $val, $attributes_order);
+        }
+        if(preg_match("/^new_att_n/", $key)){
+            $attributes[$attributes_order][1] = $val;
+        }
+        if(preg_match("/^new_att_u/", $key)){
+            $attributes[$attributes_order][2] = $val;
+            $attributes_order++;
+        }
+        /*end foreach*/
+    }
+
+    if(isset($prod_name)&&
+        isset($prod_cat)&&
+        isset($prod_desc)&&
+        isset($prod_inst_url)&&
+        isset($prod_inst_b)&&
+        isset($prod_type)){
+        $q = "UPDATE ".$db->prefix."gc_products AS prod
+        SET
+        prod.cat_id = '".$prod_cat."',
+        prod.name = '".$prod_name."',
+        prod.description = '".$prod_desc."',
+        prod.instruction_url = '".$prod_inst_url."',
+        prod.instruction_button = '".$prod_inst_b."',
+        prod.type = '".$prod_type."'
+        WHERE id = ".$id;
+
+        $db->query($q);
+    }else{
+        return "Основные данные не введены";
+    }
+
+    if(isset($images)){
+        $q = "DELETE FROM ".$db->prefix."gc_p_images WHERE prod_id = ".$id;
+        $db->query($q);
+        foreach($images as $img_key => $img_val){
+            $q = "INSERT INTO ".$db->prefix."gc_p_images VALUES ('', '".$id."', '".$img_val."', '".$img_key."' )";
+            $db->query($q);
+        }
+    }
+
+    if(isset($attributes[1])){
+        $q = "DELETE FROM ".$db->prefix."gc_parameters WHERE product_id = ".$id;
+        $db->query($q);
+        foreach($attributes as $att){
+            if($att[0] != '-1'){
+                $q = "INSERT INTO ".$db->prefix."gc_parameters VALUES ('', '".$att[0]."', '".$id."', '".$att[1]."', '".$att[2]."')";
+                $db->query($q);
+            }else{
+                $q = "INSERT INTO ".$db->prefix."gc_attributes VALUES ('', '0', '".$att[1]."', '".$att[2]."')";
+                $db->query($q);
+                $cat_id_q = "SELECT attributes.id FROM ".$db->prefix."gc_attributes AS attributes
+                              WHERE attributes.`name` = '".$att[1]."' AND
+                                    attributes.unit = '".$att[2]."' LIMIT 1";
+                $att_cat = $db->get_var($cat_id_q);
+                $q = "INSERT INTO ".$db->prefix."gc_parameters VALUES ('', '".$att_cat."', '".$id."', '".$att[3]."', '".$att[4]."')";
+                $db->query($q);
+            }
+        }
+    }
+
+    if(isset($prices[1])){
+        $q = "DELETE FROM ".$db->prefix."gc_prices_all WHERE prod_id = ".$id;
+        $db->query($q);
+        foreach($prices as $price){
+            if($price[0] != '-1'){
+                $q = "INSERT INTO ".$db->prefix."gc_prices_all
+                VALUES ('', '".$price[0]."', '".$id."', '".$price[1]."', '".$price[2]."')";
+                $db->query($q);
+            }else{
+                $q = "INSERT INTO ".$db->prefix."gc_prices
+                VALUES ('', '0', '".$price[1]."')";
+
+                $db->query($q);
+                $price_id_q = "SELECT prices.id FROM wp_gc_prices AS prices
+                              WHERE prices.`name` = '".$price[1]."' LIMIT 1";
+                $price_cat = $db->get_var($price_id_q);
+                $q = "INSERT INTO ".$db->prefix."gc_prices_all
+                VALUES ('', '".$price_cat."', '".$id."', '".$price[2]."', '".$price[3]."')";
+                $db->query($q);
+            }
+        }
+    }
+
     return "Товар обновлен";
 }
 /**/

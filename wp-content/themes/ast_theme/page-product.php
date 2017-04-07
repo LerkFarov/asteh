@@ -17,6 +17,7 @@
 
 </head>
 <body>
+<div class="row">
 <div class="containter" style="height: 136px;">
     <div class="header_fon">
         <div class="text-color_grey map-marker">
@@ -126,13 +127,16 @@
                     <div class="left_menu_body">
 
                         <?php
+                        $q = "SELECT cat.id, cat.parent FROM wp_gc_products AS prod , wp_gc_categories AS cat WHERE prod.cat_id = cat.id AND prod.id = ".$product->id;
+                        $prod_ids = $wpdb->get_results($q)[0];
+
                         foreach ($categories as $category) {
 
                             ?>
                             <p class="left_menu_elem">
                                 <a title="<?= $category->second_name; ?>"
                                    href="<?= get_home_url(); ?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
-                                   style="<?php if ($category->id == $_GET['cat_id'] || $category->id == $_GET['pid']) {
+                                   style="<?php if ($category->id == $prod_ids->parent || $category->id == $prod_ids->id) {
                                        echo "color:#da8100;";
                                    } ?>"
                                 >
@@ -145,66 +149,80 @@
                 </div>
 
             </div>
-            <div class="col-sm-9" style="padding: 0 5px 0 0; float: right;">
-                    <?php
+                <div class="col-sm-9" style="padding: 0 5px 0 0; float: right;">
+                        <?php
 
-                    if (isset($product)) { ?>
-                    <div class="col-sm-12" style="padding: 0">
-                        <div class="col-sm-12">
-                            <div class="categ-product-head">
-                                <div class="text-head"><?= $product->name; ?></div>
-                            </div>
-                        </div>
-                        <?php if (isset($product->images)) { ?>
-                        <div class="col-sm-9" style="padding: 0">
-                            <?php $i = 0;
-                            $product_count = count($product->images);
-                            foreach ($product->images as $image) { ?>
-                            <?php
-                            switch ($i) {
-                            case 0:
-                                ?>
-                                <div class="col-sm-6" style="padding-top:15px;">
-                                    <a class="fancybox-thumbs" data-fancybox-group="thumb"
-                                       href="<?= get_home_url(); ?>/<?= $image->url; ?>">
-                                        <img src="<?= get_home_url(); ?>/<?= $image->url; ?>"
-                                             alt="<?= $product->name . '_' . $i; ?>"
-                                             style="width:100%;border:1px solid #d9d9d9;">
-                                    </a>
+                        if (isset($product)) { ?>
+                        <div class="col-sm-12" style="padding: 0">
+                            <div class="col-sm-12">
+                                <div class="categ-product-head">
+                                    <div class="text-head"><?= $product->name; ?></div>
                                 </div>
+                            </div>
+                            <?php if (isset($product->images)) { ?>
+                            <div class="col-sm-9" style="padding: 0">
+                                <?php $i = 0;
+                                $product_count = count($product->images);
+                                foreach ($product->images as $image) { ?>
                                 <?php
-                                break;
-                            case 1:
+                                switch ($i) {
+                                case 0:
+                                    ?>
+                                    <div class="col-sm-6" style="padding-top:15px;">
+                                        <a class="fancybox-thumbs" data-fancybox-group="thumb"
+                                           href="<?= get_home_url(); ?>/<?= $image->url; ?>">
+                                            <img src="<?= get_home_url(); ?>/<?= $image->url; ?>"
+                                                 alt="<?= $product->name . '_' . $i; ?>"
+                                                 style="width:100%;border:1px solid #d9d9d9;">
+                                        </a>
+                                    </div>
+                                    <?php
+                                    break;
+                                case 1:
+                                    ?>
+                                    <div class="col-sm-6" style="padding: 0">
+                                    <div class="col-sm-6" style="    padding: 15px 0 0 0;">
+                                        <a class="fancybox-thumbs mini_pic" data-fancybox-group="thumb"
+                                           href="<?= get_home_url(); ?>/<?= $image->url; ?>">
+                                            <img src="<?= get_home_url(); ?>/<?= $image->url; ?>"
+                                                 alt="<?= $product->name . '_' . $i; ?>"
+                                                 style="width:100%;border:1px solid #d9d9d9;">
+                                        </a>
+                                    </div>
+                                    <?php if ($product_count == 2) { ?>
+                                    </div>
+                                <?php } ?>
+                                    <?php
+                                    break;
+                                case 2:
                                 ?>
-                                <div class="col-sm-6" style="padding: 0">
                                 <div class="col-sm-6" style="    padding: 15px 0 0 0;">
                                     <a class="fancybox-thumbs mini_pic" data-fancybox-group="thumb"
                                        href="<?= get_home_url(); ?>/<?= $image->url; ?>">
                                         <img src="<?= get_home_url(); ?>/<?= $image->url; ?>"
-                                             alt="<?= $product->name . '_' . $i; ?>"
-                                             style="width:100%;border:1px solid #d9d9d9;">
+                                             alt="<?= $product->name . '_' . $i; ?>" style="width:100%;border:1px solid #d9d9d9;">
                                     </a>
                                 </div>
-                                <?php if ($product_count == 2) { ?>
-                                </div>
-                            <?php } ?>
-                                <?php
-                                break;
-                            case 2:
-                            ?>
+                                <?php if ($product_count == 3){ ?>
+                            </div>
+                        <?php } ?>
+                        <?php
+                        break;
+                        case 3:
+                        ?>
                             <div class="col-sm-6" style="    padding: 15px 0 0 0;">
                                 <a class="fancybox-thumbs mini_pic" data-fancybox-group="thumb"
                                    href="<?= get_home_url(); ?>/<?= $image->url; ?>">
-                                    <img src="<?= get_home_url(); ?>/<?= $image->url; ?>"
-                                         alt="<?= $product->name . '_' . $i; ?>" style="width:100%;border:1px solid #d9d9d9;">
+                                    <img src="<?= get_home_url(); ?>/<?= $image->url; ?>" alt="<?= $product->name . '_' . $i; ?>"
+                                         style="width:100%;border:1px solid #d9d9d9;">
                                 </a>
                             </div>
-                            <?php if ($product_count == 3){ ?>
+                            <?php if ($product_count == 4){ ?>
                         </div>
                     <?php } ?>
                     <?php
                     break;
-                    case 3:
+                    case 4:
                     ?>
                         <div class="col-sm-6" style="    padding: 15px 0 0 0;">
                             <a class="fancybox-thumbs mini_pic" data-fancybox-group="thumb"
@@ -213,54 +231,67 @@
                                      style="width:100%;border:1px solid #d9d9d9;">
                             </a>
                         </div>
-                        <?php if ($product_count == 4){ ?>
+                        <?php if ($product_count == 5){ ?>
                     </div>
-                <?php } ?>
-                <?php
-                break;
-                case 4:
-                ?>
-                    <div class="col-sm-6" style="    padding: 15px 0 0 0;">
-                        <a class="fancybox-thumbs mini_pic" data-fancybox-group="thumb"
-                           href="<?= get_home_url(); ?>/<?= $image->url; ?>">
-                            <img src="<?= get_home_url(); ?>/<?= $image->url; ?>" alt="<?= $product->name . '_' . $i; ?>"
-                                 style="width:100%;border:1px solid #d9d9d9;">
-                        </a>
-                    </div>
-                    <?php if ($product_count == 5){ ?>
+                    <?php } ?>
+                    <?php
+                    break;
+                    } ?>
+                    <?php
+
+                    $i++;
+                    } ?>
+
                 </div>
                 <?php } ?>
-                <?php
-                break;
-                } ?>
-                <?php
-
-                $i++;
-                } ?>
-
-            </div>
-            <?php } ?>
-            <?php if (isset($product->prices)) { ?>
-                <div class="col-sm-3" style="padding: 15px 0">
-                    <div class="col-sm-12 pull-right" style="padding: 0;">
-                        <table class="table tableOrenda table-bordered">
-                            <tr>
-                                <th style="background-color: #b3b3b3;color:white;"><?php echo $product->type; ?></th>
-                                <th style="background-color: #b3b3b3;color:white;">Руб.</th>
-                            </tr>
-                            <?php foreach ($product->prices as $price) { ?>
+                <?php if (isset($product->prices)) { ?>
+                    <div class="col-sm-3" style="padding: 15px 0">
+                        <div class="col-sm-12 pull-right" style="padding: 0;">
+                            <table class="table tableOrenda table-bordered">
                                 <tr>
-                                    <td style="background-color: #f2f2f2;color:#808080;"><?= $price->name; ?></td>
-                                    <td style="background-color: #f2f2f2;color:#95b001;"><?= $price->value; ?></td>
+                                    <th style="background-color: #b3b3b3;color:white;"><?php echo $product->type; ?></th>
+                                    <th style="background-color: #b3b3b3;color:white;">Руб.</th>
                                 </tr>
-                            <?php } ?>
-                        </table>
-                        <div class="col-sm-12" style="padding: 0">
-                            <button data-toggle="modal" data-target="#myModal<?= $product->id; ?>"
-                                    class="btn btn-default pull-right rent-button"
-                                    style="padding-right: 15px; margin-right: 0; width:100%;"
-                                    data-name="<?= $product->name; ?>">
-                                <b><?php
+                                <?php foreach ($product->prices as $price) { ?>
+                                    <tr>
+                                        <td style="background-color: #f2f2f2;color:#808080;"><?= $price->name; ?></td>
+                                        <td style="background-color: #f2f2f2;color:#95b001;"><?= $price->value; ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </table>
+                            <div class="col-sm-12" style="padding: 0">
+                                <button data-toggle="modal" data-target="#myModal<?= $product->id; ?>"
+                                        class="btn btn-default pull-right rent-button"
+                                        style="padding-right: 15px; margin-right: 0; width:100%;"
+                                        data-name="<?= $product->name; ?>">
+                                    <b><?php
+                                        switch ($product->type) {
+                                            case "Аренда":
+                                                echo "Арендовать";
+                                                break;
+                                            case "Продажа":
+                                                echo "Купить";
+                                                break;
+
+                                        }
+                                        ?></b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="myModal<?= $product->id; ?>" role="dialog" style="margin-top: 200px;">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content" style="background-color: #f2f2f2;width:300px;margin-left: 150px">
+                                <div class="modal-header" style="text-align: center">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title" style='padding:0px;margin-top:30px;margin-bottom: 20px' align='center'>
+                                        ЗАПОЛНИТЬ ФОРМУ</h3>
+                                    <div style="padding-left: 20px">
+                                <span style="float:left;"><?php
                                     switch ($product->type) {
                                         case "Аренда":
                                             echo "Арендовать";
@@ -270,114 +301,88 @@
                                             break;
 
                                     }
-                                    ?></b>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal fade" id="myModal<?= $product->id; ?>" role="dialog" style="margin-top: 200px;">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content" style="background-color: #f2f2f2;width:300px;margin-left: 150px">
-                            <div class="modal-header" style="text-align: center">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title" style='padding:0px;margin-top:30px;margin-bottom: 20px' align='center'>
-                                    ЗАПОЛНИТЬ ФОРМУ</h3>
-                                <div style="padding-left: 20px">
-                            <span style="float:left;"><?php
-                                switch ($product->type) {
-                                    case "Аренда":
-                                        echo "Арендовать";
-                                        break;
-                                    case "Продажа":
-                                        echo "Купить";
-                                        break;
-
-                                }
-                                ?>:</span><br>
-                                    <h4 style="color:#ffd200;text-align:left"><?= $product->name; ?></h4>
+                                    ?>:</span><br>
+                                        <h4 style="color:#ffd200;text-align:left"><?= $product->name; ?></h4>
+                                    </div>
+                                    <form>
+                                        <input type="hidden" name="type" value="orenda">
+                                        <input type="hidden" name="tovar" value="<?= $product->name; ?>">
+                                        <input type="text" class="form-control" placeholder="Ваше имя:" name="name"
+                                               style="width:90%;margin:0 auto; margin-bottom:30px;" required>
+                                        <input type="text" class="form-control" placeholder="Ваш номер телефона:" name="telefon"
+                                               style="width:90%;margin:0 auto;margin-bottom:30px" required>
+                                        <textarea class="form-control" placeholder="Примечания" name="description"
+                                                  style="width:90%;margin:0 auto;margin-bottom:30px"></textarea>
+                                        <input type="submit" class="btn btn-default"
+                                               style="background-color: #95b001;color:white;margin:0 auto;font-size: 20px"
+                                               value="Заказать">
+                                    </form>
                                 </div>
-                                <form>
-                                    <input type="hidden" name="type" value="orenda">
-                                    <input type="hidden" name="tovar" value="<?= $product->name; ?>">
-                                    <input type="text" class="form-control" placeholder="Ваше имя:" name="name"
-                                           style="width:90%;margin:0 auto; margin-bottom:30px;" required>
-                                    <input type="text" class="form-control" placeholder="Ваш номер телефона:" name="telefon"
-                                           style="width:90%;margin:0 auto;margin-bottom:30px" required>
-                                    <textarea class="form-control" placeholder="Примечания" name="description"
-                                              style="width:90%;margin:0 auto;margin-bottom:30px"></textarea>
-                                    <input type="submit" class="btn btn-default"
-                                           style="background-color: #95b001;color:white;margin:0 auto;font-size: 20px"
-                                           value="Заказать">
-                                </form>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </div>
 
-            <div class="col-sm-12" style="padding:20px 0; ">
-                <div class="col-sm-5" style="padding: 0">
-                    <?php if (isset($product->instruction_url) && $product->instruction_url != null) { ?>
-                        <div class="col-sm-12">
-                            <a rel="nofollow" target="_blabk"
-                               href="http://docs.google.com/viewer?url=<?= get_home_url(); ?><?= $product->instruction_url; ?>">
-                                <button class="btn btn-default instructions-btn"><?= $product->instruction_button; ?></button>
-                            </a>
-                        </div>
-                    <?php } ?>
-                    <div class="col-sm-12" style="padding-top: 20px">
-                        <?php if (isset($product->params)) { ?>
-                            <table class="table table-bordered product_options productTable">
-                                <tr>
-                                    <th style="background-color: #f2f2f2" colspan="3">Технические характеристики</th>
-                                </tr>
-                                <?php foreach ($product->params as $param) { ?>
+                <div class="col-sm-12" style="padding:20px 0; ">
+                    <div class="col-sm-5" style="padding: 0">
+                        <?php if (isset($product->instruction_url) && $product->instruction_url != null) { ?>
+                            <div class="col-sm-12">
+                                <a rel="nofollow" target="_blabk"
+                                   href="http://docs.google.com/viewer?url=<?= get_home_url(); ?><?= $product->instruction_url; ?>">
+                                    <button class="btn btn-default instructions-btn"><?= $product->instruction_button; ?></button>
+                                </a>
+                            </div>
+                        <?php } ?>
+                        <div class="col-sm-12" style="padding-top: 20px">
+                            <?php if (isset($product->params)) { ?>
+                                <table class="table table-bordered product_options productTable">
                                     <tr>
-                                        <td><?= $param->name; ?></td>
-                                        <td><?= $param->unit; ?></td>
-                                        <td><?= $param->value; ?></td>
+                                        <th style="background-color: #f2f2f2" colspan="3">Технические характеристики</th>
                                     </tr>
-                                <?php } ?>
-                            </table>
-                        <?php } ?>
+                                    <?php foreach ($product->params as $param) { ?>
+                                        <tr>
+                                            <td><?= $param->name; ?></td>
+                                            <td><?= $param->unit; ?></td>
+                                            <td><?= $param->value; ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </table>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="row" style="padding-top: 20px">
+                            <?php if (isset($product->description)) { ?>
+                                <div class="col-sm-12" style="padding-left: 40px;">
+                                    <section>
+                                        <div class="categ-product-head">
+                                            <div class="text-head">Особенности</div>
+                                        </div>
+                                        <div class="textContent">
+                                            <p>
+                                                <?= $product->description; ?></p>
+                                        </div>
+                                    </section>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-7">
-                    <div class="row" style="padding-top: 20px">
-                        <?php if (isset($product->description)) { ?>
-                            <div class="col-sm-12" style="padding-left: 40px;">
-                                <section>
-                                    <div class="categ-product-head">
-                                        <div class="text-head">Особенности</div>
-                                    </div>
-                                    <div class="textContent">
-                                        <p>
-                                            <?= $product->description; ?></p>
-                                    </div>
-                                </section>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        <?php } else { ?>
-                <div class="col-sm-12">
+            <?php } else { ?>
                     <div class="col-sm-12">
-                        <p>Товар уже не существует!</p>
-                        <a href="/">Главная</a>
+                        <div class="col-sm-12">
+                            <p>Товар уже не существует!</p>
+                            <a href="/">Главная</a>
+                        </div>
                     </div>
+                        <?php } ?>
                 </div>
-                    <?php } ?>
+                <div style="clear:both;"></div>
             </div>
-            <div style="clear:both;"></div>
         </div>
-    </div>
+</div>
 <div class="col-sm-12" style="padding: 0; display: none">
     <?php
     foreach ($categories as $category) { ?>

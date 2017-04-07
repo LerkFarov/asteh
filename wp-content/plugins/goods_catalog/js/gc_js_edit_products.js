@@ -584,10 +584,10 @@ $(document).ready(function () {
                 },
             })
             .done(function (data) {
-                alert(data);
-                setTimeout(function () {
+                console.log(data);
+                /*setTimeout(function () {
                     window.location.reload();
-                }, 100);
+                }, 100);*/
             });
     });
 });

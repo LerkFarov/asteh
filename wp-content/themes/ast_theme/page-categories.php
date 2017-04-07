@@ -20,6 +20,7 @@ require_once("scripts/prod_get_scripts.php");
         <?php wp_head() ?>
     </head>
 <body>
+<div class="row">
 <div class="containter" style="height: 136px;">
     <div class="header_fon">
         <div class="text-color_grey map-marker">
@@ -128,7 +129,7 @@ require_once("scripts/prod_get_scripts.php");
                         <p class="left_menu_elem">
                             <a title="<?= $category->second_name; ?>"
                                href="<?= get_home_url(); ?>/categories/?id=<?= $category->id; ?>" class="left_menu_link"
-                               style="<?php if ($category->id == $_GET['id'] || $category->id == $_GET['pid']) {
+                               style="<?php if ($category->id == $_GET['id'] || $category->id == $res[0]->parent) {
                                    echo "color:#da8100;";
                                } ?>"
                             >
@@ -159,7 +160,7 @@ require_once("scripts/prod_get_scripts.php");
                         <div class="col-sm-4 homeCategoryHover"
                              style="position:relative;padding-left:2px;padding-right: 2px; margin-top:4px;">
                             <a title="<?= $category->name; ?>"
-                               href="/categories/?id=<?= $category->id; ?>&pid=<?= $_GET['id'] ?>">
+                               href="/categories/?id=<?= $category->id; ?>">
                                 <img src="<?= get_home_url(); ?><?= $category->image; ?>" alt="<?= $category->name; ?>"
                                      style="width:100%;height:194px;">
                                 <div class="col-sm-12" style="padding:0px;position:relative;">
@@ -194,7 +195,7 @@ require_once("scripts/prod_get_scripts.php");
                         <div class="col-sm-12" style="padding: 0;">
                             <div class="categ-product-head">
                                 <div class="text-head"><a title="<?= $product->name; ?>"
-                                                          href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?= $_GET['id'] ?>&pid=<?= $_GET['pid'] ?>"><?= $product->name; ?></a>
+                                                          href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>"><?= $product->name; ?></a>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +203,7 @@ require_once("scripts/prod_get_scripts.php");
                             <?php
                             if (isset($product->images)) {
                                 foreach ($product->images as $image) { ?>
-                                    <a href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?= $_GET['id'] ?>&pid=<?= $_GET['pid'] ?>">
+                                    <a href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>">
                                         <img src="<?= get_home_url(); ?>/<?= $image->url; ?>"
                                              alt="<?= $product->name; ?>"
                                              style="width:100%;border:1px solid #d9d9d9;">
@@ -252,7 +253,7 @@ require_once("scripts/prod_get_scripts.php");
                             <div class="col-sm-8">
                                 <div class="row">
                                     <a title="Подробнее"
-                                       href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>&cat_id=<?= $_GET['id'] ?>&pid=<?= $_GET['pid'] ?>">
+                                       href="<?= get_home_url(); ?>/product/?id=<?= $product->id; ?>">
                                         <button class="btn btn-default pull-right more-button"><b>Подробнее</b></button>
                                     </a>
                                 </div>

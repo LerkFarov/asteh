@@ -21,10 +21,10 @@ define( 'WPCACHEHOME', '/home/m/mali13mx/asteh.su/public_html/wp-content/plugins
 define('DB_NAME', 'asteh');
 
 /** Имя пользователя MySQL */
-define('DB_USER', 'roketD');
+define('DB_USER', 'root');
 
 /** Пароль к базе данных MySQL */
-define('DB_PASSWORD', 'X4jaTHJgHBnz1WMk');
+define('DB_PASSWORD', '');
 
 /** Имя сервера MySQL */
 define('DB_HOST', 'localhost');
